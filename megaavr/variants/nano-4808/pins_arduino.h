@@ -64,7 +64,7 @@
 
 #define PINS_COUNT                     27
 #define NUM_DIGITAL_PINS               PINS_COUNT
-#define NUM_ANALOG_INPUTS              12
+#define NUM_ANALOG_INPUTS              15
 #define NUM_RESERVED_PINS              0
 #define NUM_INTERNALLY_USED_PINS       0
 #define NUM_I2C_PINS                   2
@@ -74,7 +74,8 @@
 #define ANALOG_INPUT_OFFSET            14
 #define LED_BUILTIN                    PIN_PC2
 #define EXTERNAL_NUM_INTERRUPTS        47
-#define digitalPinToAnalogInput(p)     (((p) < 8) ? (p) : ((p) >= 14 && (p) >= 25) ? (p) : NOT_A_PIN)
+// #define digitalPinToAnalogInput(p)     (((p) < 8) ? (p) : ((p) >= 14 && (p) <= 25) ? (p) : NOT_A_PIN) // doesn't work,
+#define digitalPinToAnalogInput(p)  ( ((p) >= 14) && ((p) <= 17) ? ((p) - 14) : (  ((p) <= 21) ? (p) - 6: NOT_A_PIN) ) // a trivial soluation
 #define digitalOrAnalogPinToDigital(p) (((p) <= 40) ? (p) : NOT_A_PIN)
 
 // Timer to use for millis/micros
